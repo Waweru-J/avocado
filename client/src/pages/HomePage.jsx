@@ -12,8 +12,8 @@ const HomePage = () => {
         <HomeCards />
         <AvocadoListings isHome={true} />
         <ViewAllAvocados />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

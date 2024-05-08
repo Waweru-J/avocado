@@ -61,8 +61,8 @@ const Sell = () => {
       console.log("Avocado ad data submitted:", res.data);
 
       if (res.status === 200) {
-        toast("Sell ad data submitted", { type: "success" });
-        navigate("/");
+        toast("Avocado Listingd uploaded successfully", { type: "success" });
+        navigate("/avocados/list");
       } else {
         toast("Error posting data. Please try again.", { type: "error" });
       }

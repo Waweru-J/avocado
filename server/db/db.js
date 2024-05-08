@@ -32,5 +32,6 @@ conn.on("error", (error) => {
 const User = require("../schema/Users.js");
 const Avocado = require("../schema/Avocados.js");
 const Review = require("../schema/Review.js");
+const Admin = require("../schema/Admin.js");
 
-module.exports = { User, Avocado, Review };
+module.exports = { User, Avocado, Review, Admin };

@@ -26,7 +26,7 @@ const AvocadoListing = ({ avocado }) => {
               }}
             />
             <div className="text-gray-600 my-2">{avocado.variety}</div>
-            <h3 className="text-xl font-bold">Joseph</h3>
+            <h3 className="text-xl font-bold">{avocado.username}</h3>
           </div>
           <div className="mb-5">{description}</div>
           <button
@@ -35,8 +35,8 @@ const AvocadoListing = ({ avocado }) => {
           >
             {showFullDescription ? "less" : "more"}
           </button>
-          <h3 className="text-green-500 mb-2">{avocado.farmsize} Acres</h3>
-          <div className="border border-gray-100 mb-5"></div>
+          <h3 className=" mb-2">{avocado.farmsize} Acres</h3>
+          <div className="border border-gray-100 mb-5">{avocado.phone}</div>
           <div className="flex flex-col lg:flex-row justify-between mb-4">
             <div className="text-orange-700 mb-3">
               <FaMapMarker className="inline text-lg mb-1" />

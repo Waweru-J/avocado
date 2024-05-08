@@ -34,13 +34,18 @@ const FarmerSidebar = ({ setSelectedLink }) => {
   return (
     <div className="bg-green-800 text-white w-64 flex-shrink-0">
       <div className="p-4">
-        <h2 className="text-2xl font-semibold">User Dashboard</h2>
+        <Link
+          to="/"
+          className={`text-2xl flex justify-between w-full py-2 px-4 text-white-800 hover:bg-indigo-600 hover:text-white focus:outline-none`}
+        >
+          Home Page
+        </Link>
       </div>
       <nav className="mt-4">
         {/* Profile Dropdown */}
         <div>
           <button
-            className="flex justify-between w-full py-2 px-4 text-white-800 hover:bg-green-600 hover:text-white focus:outline-none"
+            className="flex justify-between w-full py-2 px-4 text-white-800 hover:bg-indigo-600 hover:text-white focus:outline-none"
             onClick={toggleProfileDropdown}
           >
             Profile
@@ -64,14 +69,14 @@ const FarmerSidebar = ({ setSelectedLink }) => {
             <div className="pl-8">
               <Link
                 to=""
-                className="block py-2 px-4 text-white-800 hover:bg-green-600 hover:text-white"
+                className="block py-2 px-4 text-white-800 hover:bg-indigo-600 hover:text-white"
                 onClick={() => handleLinkClick("Profile")}
               >
                 View Profile
               </Link>
               {/* <Link
                 to=""
-                className="block py-2 px-4 text-white-800 hover:bg-green-600 hover:text-white"
+                className="block py-2 px-4 text-white-800 hover:bg-indigo-600 hover:text-white"
                 onClick={() => handleLinkClick("Edit Profile")}
               >
                 Edit Profile
@@ -84,7 +89,7 @@ const FarmerSidebar = ({ setSelectedLink }) => {
         <div>
           <Link
             to=""
-            className={`flex justify-between w-full py-2 px-4 text-white-800 hover:bg-green-600 hover:text-white focus:outline-none`}
+            className={`flex justify-between w-full py-2 px-4 text-white-800 hover:bg-indigo-600 hover:text-white focus:outline-none`}
             onClick={() => handleLinkClick("Post Avocados")}
           >
             Post Avocados
@@ -95,7 +100,7 @@ const FarmerSidebar = ({ setSelectedLink }) => {
         <div>
           <Link
             to=""
-            className={`flex justify-between w-full py-2 px-4 text-white-800 hover:bg-green-600 hover:text-white focus:outline-none`}
+            className={`flex justify-between w-full py-2 px-4 text-white-800 hover:bg-indigo-600 hover:text-white focus:outline-none`}
             onClick={() => handleLinkClick("See Your Uploads")}
           >
             See Your Uploads
@@ -121,7 +126,7 @@ const FarmerSidebar = ({ setSelectedLink }) => {
         <div className="profile-actions">
           <button
             onClick={handleLogout}
-            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-1/2 focus:outline-none  mt-10 block"
+            className="bg-red-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full w-1/2 focus:outline-none  mt-10 block"
           >
             <FontAwesomeIcon icon={faSignOutAlt} />
             <span>Logout</span>

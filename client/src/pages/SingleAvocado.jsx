@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import api from "../api/axios.js";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import Footer from "../components/footer/Footer.jsx";
+import Card from "../components/home/SingleCard.jsx";
 // import Rating from "../components/Rating.jsx";
 
 const SingleAvocado = () => {
@@ -109,7 +110,7 @@ const SingleAvocado = () => {
       // Handle success or display a message
     } catch (error) {
       console.error("Error submitting review:", error);
-      toast("Errorsending. Please try again.", { type: "error" });
+      toast("Please Login to make a review.", { type: "error" });
       // Handle error or display a message
     }
   };
@@ -135,43 +136,69 @@ const SingleAvocado = () => {
           <div className="flex w-full py-4 px-4">
             <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
               <main className="flex-1">
-                <div className="bg-white p-6 rounded-lg shadow-md text-center md:text-left">
-                  <div className="flex items-center justify-between">
-                    {/* <!-- Image Container --> */}
-                    <div>
+                <div
+                  className="bg-white grid grid-cols-1 md:grid-cols-2
+        gap-4 p-4 rounded-lg"
+                >
+                  <Card>
+                    <div className="px-6 py-4">
                       <img src={product.photos[0]} alt="" />
                     </div>
-                    <div className="p-6 mt-6">
-                      <h3 className="text-green-800 text-lg font-bold mb-6">
-                        Quality:
-                      </h3>
-                      <p className=" mb-4">{product.produceQuality}</p>
-                      <h3 className="text-green-800 text-lg font-bold mb-2">
-                        Variety:
-                      </h3>
-                      <p className="mb-4">{product.variety}</p>
-                      <div className="">
-                        <div className="text-gray-500 mt-4 flex items-center">
-                          <FaMapMarker className="inline text-lg mb-1" />
-                          <p className="text-orange-700 ml-2">
-                            {product.location}
+                  </Card>
+                  <Card>
+                    <div className="px-6 py-4">
+                      <div className="grid grid-cols-1 md:grid-cols-4">
+                        <h3 className="text-green-800 text-lg font-bold mb-6">
+                          Farm Size:
+                          <p className="text-black mt-2 my-2 bg-indigo-100 py-2 px-2 font-bold">
+                            {product.farmsize} Acres
                           </p>
+                        </h3>
+                        <h3 className="text-green-800 text-lg font-bold mb-6">
+                          Quality:
+                          <p className="text-black mt-2 my-2 bg-indigo-100 py-2 font-bold">
+                            {product.produceQuality}
+                          </p>
+                        </h3>
+                        <h3 className="text-green-800 text-lg font-bold mb-6">
+                          Variety:
+                          <p className="text-black mt-2 my-2 bg-indigo-100 py-2 font-bold">
+                            {product.variety}
+                          </p>
+                        </h3>
+                        <h3 className="text-green-800 text-lg font-bold mb-6">
+                          Price:
+                          <p className="text-black mt-2 my-2 bg-indigo-100 py-2 font-bold">
+                            $ {product.price}
+                          </p>
+                        </h3>
+                      </div>
+                      <div className="">
+                        <div>
+                          <h3 className="text-green-800 text-lg font-bold mb-6">
+                            Description:
+                          </h3>
+                          <p className=" mb-4">{product.description}</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2">
+                          <div className="text-indigo-700 mt-0 flex items-center">
+                            <FaMapMarker className="inline text-lg mt-0 text-2xl" />
+                            <p className="text-indigo-900 ml-2 text-2xl">
+                              {product.location}
+                            </p>
+                          </div>
+                          <h3 className="text-green-800 text-lg font-bold mb-6">
+                            Harvest will Start On Date:
+                            <p className="text-gray-900 text-2xl mt-2 my-2 bg-green-100 py-2 px-3 ">
+                              {product.harvestTimes}
+                            </p>
+                          </h3>
                         </div>
                       </div>
-                    </div>
-                    <div className=" mt-6 w-1/2">
-                      <h3 className="text-green-800 text-lg font-bold mb-6">
-                        Avocado Description
-                      </h3>
-                      <p className=" mb-4">{product.description}</p>
-                      <h3 className="text-green-800 text-lg font-bold mb-2">
-                        Price
-                      </h3>
-                      <p className="mb-4"> $ {product.price} / Avocado</p>
-                    </div>
 
-                    {/* <!-- Text Container --> */}
-                  </div>
+                      {/* <!-- Text Container --> */}
+                    </div>
+                  </Card>
                 </div>
                 <div
                   className="
@@ -181,7 +208,7 @@ const SingleAvocado = () => {
                     <h3 className="text-green-800 text-lg font-bold mb-6">
                       Reviews
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 rounded-lg">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-7 p-4 rounded-lg">
                       {reviews.length === 0 ? (
                         <p>No reviews available for this product.</p>
                       ) : (
@@ -215,8 +242,8 @@ const SingleAvocado = () => {
                   </div>
                 </div>
               </main>
-              <aside>
-                <div className="bg-white p-6 rounded-lg shadow-md">
+              <aside className="bg-white p-6 rounded-lg shadow-md">
+                <div className="">
                   <h3 className="text-xl font-bold mb-6">Farmer Info</h3>
                   <h2 className="text-2xl">{product.username}</h2>
                   <p className="mb-2">
@@ -233,7 +260,7 @@ const SingleAvocado = () => {
                     {product.phone}
                   </p>
                 </div>
-                <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+                <div className="p-6 mt-6">
                   <Fragment>
                     <div className="text-center mt-5">
                       <h1 className="text-xl font-bold">{handleText()}</h1>

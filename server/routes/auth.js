@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const Avocado = require("../schema/Avocados.js");
 const Review = require("../schema/Review.js");
 const User = require("../schema/Users.js");
+const Admin = require("../schema/Admin.js");
 
 const router = express.Router();
 const jwt = require("jsonwebtoken");
@@ -90,6 +91,37 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//Admin Signin
+router.post("/admin", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const admin = await Admin.findOne({ username });
+    if (!admin) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Admin not found" });
+    }
+    const isPasswordMatch = await bcrypt.compare(
+      password.trim(),
+      admin.password
+    );
+    if (!isPasswordMatch) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Incorrect password" });
+    }
+
+    const adminToken = generateToken(admin);
+    console.log(adminToken);
+
+    return res.status(200).json({ success: true, adminToken, admin });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
+  }
+});
+
 // routes/sell.js
 
 router.post("/sell", async (req, res) => {
@@ -161,10 +193,24 @@ router.post("/sell", async (req, res) => {
 router.post("/reviews", async (req, res) => {
   try {
     const { userId, rating, comment, username } = req.body;
-    if (!userId || !rating || !comment) {
+
+    if (!userId) {
       return res
         .status(400)
-        .json({ success: false, message: "Review details are required" });
+        .json({ success: false, message: "Please Sign in to make a review" });
+    }
+    if (!comment) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Please Comment to make a review" });
+    }
+    if (!rating) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "Please include rating to make a review",
+        });
     }
 
     const newReview = new Review({
@@ -177,7 +223,7 @@ router.post("/reviews", async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Review listed successfully",
+      message: "Reviewed successfully",
     });
   } catch (error) {
     console.error("Error listing Review:", error);

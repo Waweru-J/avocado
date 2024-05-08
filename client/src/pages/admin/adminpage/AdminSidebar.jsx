@@ -1,5 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const AdminSidebar = ({ setSelectedLink }) => {
   const [showProductsDropdown, setShowProductsDropdown] = useState(false);
@@ -21,21 +23,22 @@ const AdminSidebar = ({ setSelectedLink }) => {
         break;
     }
   };
+  const admin = JSON.parse(localStorage.getItem("admin"));
 
   const handleLinkClick = (link) => {
     setSelectedLink(link);
   };
 
   return (
-    <div className="bg-indigo-700 text-white w-64 flex-shrink-0">
+    <div className="bg-green-700 text-white w-64 flex-shrink-0">
       <div className="p-4">
-        <h2 className="text-2xl font-semibold">Admin Panel</h2>
+        <h2 className="text-2xl font-semibold">Manage</h2>
       </div>
       <nav className="mt-4">
         {/* Products Dropdown */}
         <div>
           <button
-            className="flex justify-between w-full py-2 px-4 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none"
+            className="flex justify-between w-full py-2 px-4  hover:bg-gray-700 hover:text-white focus:outline-none"
             onClick={() => toggleDropdown("products")}
           >
             Users Uploads
@@ -66,7 +69,7 @@ const AdminSidebar = ({ setSelectedLink }) => {
               </a> */}
               <a
                 href="#"
-                className="block py-2 px-4 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="block py-2 px-4 text-gray-200 hover:bg-gray-700 hover:text-white"
                 onClick={() => handleLinkClick("Avocado Categories")}
               >
                 Avocado Categories
@@ -119,7 +122,7 @@ const AdminSidebar = ({ setSelectedLink }) => {
         {/* Customers Dropdown */}
         <div>
           <button
-            className="flex justify-between w-full py-2 px-4 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none"
+            className="flex justify-between w-full py-2 px-4  hover:bg-gray-700 hover:text-white focus:outline-none"
             onClick={() => toggleDropdown("customers")}
           >
             System Users
@@ -143,7 +146,7 @@ const AdminSidebar = ({ setSelectedLink }) => {
             <div className="pl-8">
               <a
                 href="#"
-                className="block py-2 px-4 text-gray-400 hover:bg-gray-700 hover:text-white"
+                className="block py-2 px-4 text-gray-200 hover:bg-gray-700 hover:text-white"
                 onClick={() => handleLinkClick("Total Users")}
               >
                 Total Users
@@ -164,16 +167,11 @@ const AdminSidebar = ({ setSelectedLink }) => {
         <div className="flex items-center">
           <div className="flex-shrink-0 mr-3">
             {/* Placeholder for user avatar */}
-            <img
-              className="w-10 h-10 rounded-full"
-              src="https://via.placeholder.com/50"
-              alt="User Avatar"
-            />
+            <FontAwesomeIcon icon={faUser} className="mr-2 mt-3" />
           </div>
           <div>
             {/* User name and role */}
-            <div className="text-sm font-medium">John Doe</div>
-            <div className="text-gray-400 text-xs">Administrator</div>
+            <div className="mt-2 text-sm font-medium">{admin.username}</div>
           </div>
         </div>
       </div>

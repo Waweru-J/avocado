@@ -1,6 +1,18 @@
 import Card from "./Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../store/AuthProvider";
 const HomeCards = () => {
+  const navigate = useNavigate();
+  const { authUser } = useContext(AuthContext);
+
+  const handleSellAvocado = () => {
+    if (!authUser) {
+      navigate("/signup");
+    } else {
+      navigate("/farmpage");
+    }
+  };
   return (
     <section className="py-4">
       <div className="container-xl lg:container m-auto">
@@ -29,7 +41,8 @@ const HomeCards = () => {
               buyer
             </p>
             <Link
-              to="/farmpage"
+              onClick={handleSellAvocado}
+              to=""
               className="inline-block bg-green-500
                 text-white rounded-lg px-2 py-2
                 hover:bg-green-600"

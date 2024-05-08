@@ -1,27 +1,36 @@
-import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
+import { Link, useNavigate } from "react-router-dom"; // Assuming you're using React Router for navigation
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 const AdminNav = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken");
+    navigate("/admin");
+  };
+
   return (
-    <nav className="bg-indigo-700 py-4 px-6">
+    <nav className="bg-green-700 py-4 px-6">
       <ul className="flex justify-between items-center">
         <li>
-          <Link to="/admin" className="text-white flex items-center">
-            <FontAwesomeIcon icon={faUser} className="mr-2" />
-            Dashboard
+          <Link
+            to="/admin/page"
+            className="text-white flex items-center text-2xl"
+          >
+            ADMINSTRATOR
           </Link>
+        </li>
+        <li>
+          <h className="text-white text-2xl ">
+            AVOCADO FARMER-BUYER LOCATION SYSTEM
+          </h>
         </li>
         <li>
           <Link
-            to="/settings"
-            className="text-white flex items-center text-3xl"
+            to=""
+            onClick={handleLogout}
+            className="text-white flex items-center"
           >
-            Manage Users and User Post
-          </Link>
-        </li>
-        <li>
-          <Link to="/logout" className="text-white flex items-center">
             <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
             Logout
           </Link>

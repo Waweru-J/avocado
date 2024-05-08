@@ -2,6 +2,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../store/AuthProvider";
 import logo from "../../assets/images/logo.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -38,8 +40,8 @@ const Navbar = () => {
         <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
           <NavLink className="flex flex-shrink-0 item-center mr-4" to="/">
             <img className="h-10 w-auto" src={logo} alt="img" />
-            <span className="hidden md:block text-white text-2xl font-bold ml-2">
-              React Avocados
+            <span className="hidden md:block text-white text-2xl f ml-2">
+              Avocado{"'"}s Farmers & Buyers
             </span>
           </NavLink>
           <div className="md:ml-auto">
@@ -62,9 +64,9 @@ const Navbar = () => {
                 <div className="relative">
                   <button
                     onClick={toggleProfile}
-                    className={linkClass(null, null)}
+                    className="text-white text-2xl mt-2 px-8"
                   >
-                    Profile
+                    <FontAwesomeIcon icon={faUser} className="mr-2 mt-3" />
                   </button>
                   {isProfileOpen && (
                     <div className="absolute top-full right-0 bg-white border border-gray-200 rounded-md mt-1">

@@ -37,9 +37,8 @@ const CategoriesPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await api("DELETE", `auth/remove/avocado/${id}`);
-      toast("Avocado deleted successfully", { type: "success" });
-      setAvocados(avocados.filter((avocado) => avocado.id !== id));
+      const data = await api("DELETE", `auth/remove/avocado/${id}`);
+      toast(data.data.message, { type: "success" });
     } catch (error) {
       console.log(error);
       toast("Error deleting Avocado", { type: "error" });
@@ -200,7 +199,7 @@ const CategoriesPage = () => {
               </td>
               <td className="border border-gray-800 px-4 py-2">
                 <button
-                  onClick={() => handleDelete(avocado.id)}
+                  onClick={() => handleDelete(avocado._id)}
                   className="px-2 py-1 bg-red-500 text-white rounded-md"
                 >
                   Delete
